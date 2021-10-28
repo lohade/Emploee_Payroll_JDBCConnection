@@ -40,10 +40,24 @@ public class EmployeeData {
             System.out.println(e.getMessage());
         }
     }
+    public void updateSalary(){
+        String sql1="update employee_payroll set salary=30000 where name='harsh'";
+        PreparedStatement prepared;
+        try(Connection con= DriverManager.getConnection(DB_URL,USER,PASS);
+            Statement stmt=con.createStatement())
+
+        {
+         stmt.executeUpdate(sql1);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args){
         EmployeeData connection=new EmployeeData();
         connection.getData();
-        connection.updateDataPrepareStatement();
+        connection.updateSalary();
+        //connection.updateDataPrepareStatement();
         connection.getData();
     }
 }
