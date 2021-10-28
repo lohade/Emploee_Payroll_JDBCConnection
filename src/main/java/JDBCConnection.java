@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 
 public class JDBCConnection {
     public static void main(String[] args){
-        JDBCConnection connection=new JDBCConnection();
-        connection.getConnection();
+        getConnect();
     }
 
-    public  Connection getConnection() {
+    public static Connection getConnect() {
         String url = "jdbc:mysql://localhost:3306/payroll_service";
         String userName = "root";
         String password = "abhishek";
@@ -33,7 +32,7 @@ public class JDBCConnection {
         return null;
     }
 
-    private  void listDrivers(){
+    private static void listDrivers(){
         Enumeration<Driver> driverList=DriverManager.getDrivers();
         while (driverList.hasMoreElements()){
             Driver driver=driverList.nextElement();

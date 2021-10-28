@@ -4,6 +4,7 @@ public class EmployeeData {
     static final String DB_URL = "jdbc:mysql://localhost:3306/payroll_service";
     static final String USER = "root";
     static final String PASS = "abhishek";
+    JDBCConnection mySql=new JDBCConnection();
 
 
     public  void getData()  {
@@ -25,8 +26,24 @@ public class EmployeeData {
             System.out.println(e.getMessage());
         }
     }
+
+    public void updateDataPrepareStatement(){
+        String sqlUpdate="update employee_payroll set salary=30000 where name='abhi'";
+        PreparedStatement psmt;
+
+        try(Connection conn=DriverManager.getConnection(DB_URL,USER,PASS))
+        {
+
+            psmt=conn.prepareStatement(sqlUpdate);
+             psmt.execute();
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
     public static void main(String[] args){
         EmployeeData connection=new EmployeeData();
+        connection.getData();
+        connection.updateDataPrepareStatement();
         connection.getData();
     }
 }
